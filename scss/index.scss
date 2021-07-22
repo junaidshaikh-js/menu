@@ -1,0 +1,161 @@
+// reset css
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+// variables
+$gold-color: #c59d5f;
+$gray-color1: hsl(209, 61%, 16%);
+$gray-color2: hsl(210, 22%, 49%);
+$font-family: "Roboto", sans-serif;
+
+// mixins
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// menu section
+.menu {
+  width: 90vw;
+  margin: 1rem auto;
+
+  header {
+    .title {
+      font-family: $font-family;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .underline {
+      width: 50px;
+      height: 6px;
+      margin: 0 auto;
+      background-color: $gold-color;
+    }
+  }
+
+  .filter-btns {
+    @include flex-center();
+    flex-flow: row wrap;
+    margin-top: 2rem;
+
+    .filter-btn {
+      padding: 0.5rem 0.8rem;
+      margin: 0.8rem;
+      font-size: 1rem;
+      background-color: white;
+      border: 1px solid $gold-color;
+      border-radius: 8px;
+      color: $gold-color;
+      transition: all 0.4s ease-out;
+
+      &:hover {
+        background-color: $gold-color;
+        color: white;
+      }
+    }
+  }
+
+  .menu-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    max-width: 400px;
+    margin: 0 auto;
+
+    article {
+      display: flex;
+      flex-flow: column nowrap;
+      margin-top: 2rem;
+    }
+
+    &-image img {
+      border: 5px solid $gold-color;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    &-info header {
+      display: flex;
+      justify-content: space-between;
+      color: $gray-color1;
+      font-size: 1.2rem;
+      border-bottom: dotted gray;
+    }
+
+    &-price {
+      color: $gold-color;
+    }
+
+    &-desc {
+      padding-top: 0.8rem;
+      color: $gray-color2;
+    }
+  }
+}
+
+@media only screen and (min-width: 770px) {
+  .menu {
+    .menu-item {
+      max-width: 700px;
+
+      article {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      &-image img {
+        width: 200px;
+        height: 200px;
+      }
+
+      &-info {
+        padding-left: 1rem;
+
+        header {
+          font-size: 1.4rem;
+        }
+      }
+
+      &-desc {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .menu {
+    .menu-item {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 3rem;
+      max-width: 1250px;
+    }
+  }
+}
